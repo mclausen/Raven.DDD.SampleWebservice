@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Controllers;
 using Castle.Windsor;
-using Microsoft.Owin;
 
 namespace Raven.DDD.SampleWebservice.Infrastructure
 {
     public class RavenApiController : ApiController
     {
-        private ISet<object> objToBeDisposed;
+        private readonly ISet<object> objToBeDisposed;
 
         public RavenApiController()
         {
@@ -22,10 +20,16 @@ namespace Raven.DDD.SampleWebservice.Infrastructure
             var context = HttpContext.Current.GetOwinContext();
             var container = context.Get<IWindsorContainer>("windsor-container");
 
-            var cmd = container.Resolve<TInput>();
+            var cmd = container.Resolve<Command<TResonse>>();
             objToBeDisposed.Add(cmd);
 
-            action(cmd);
+            var input = cmd as TInput;
+
+            if(input == null)
+                throw new InvalidCastException($"Could not cast {typeof(Command<TResonse>)} to {typeof(TInput)}");
+
+
+            action(input);
 
             return cmd;
         }

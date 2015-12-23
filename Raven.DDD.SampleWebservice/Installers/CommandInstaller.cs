@@ -12,7 +12,7 @@ namespace Raven.DDD.SampleWebservice.Installers
             container.Register(
                 Classes.FromThisAssembly().BasedOn(typeof (Command<>))
                 .WithServiceBase()
-                .LifestyleTransient()
+                .LifestylePerWebRequest()
                 );
         }
     }
