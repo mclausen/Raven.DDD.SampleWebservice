@@ -135,6 +135,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Command.cs" />
+    <Compile Include="Infrastructure\OwinDomainEventPublisher.cs" />
     <Compile Include="Infrastructure\RavenApiController.cs" />
     <Compile Include="Infrastructure\RavenDbUnitOfWork.cs" />
     <Compile Include="Installers\CommandInstaller.cs" />

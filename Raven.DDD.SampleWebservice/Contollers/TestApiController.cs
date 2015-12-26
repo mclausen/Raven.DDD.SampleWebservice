@@ -23,8 +23,6 @@ namespace Raven.DDD.SampleWebservice.Contollers
             return Ok();
         }
 
-       
-
         public class Response
         {
             public string Message { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Raven.Client;
+using Raven.DDD.Core;
 using Raven.DDD.SampleWebservice.Infrastructure;
 
 namespace Raven.DDD.SampleWebservice.Commands
@@ -12,9 +13,16 @@ namespace Raven.DDD.SampleWebservice.Commands
 
         public async override Task<TestCommandResponse> Execute()
         {
-            var testCommandResponse = new TestCommandResponse() {Message = Message };
-            await Session.StoreAsync(testCommandResponse);
+            var testRoot = await Session.LoadAsync<TestAggregateRoot>(TestAggregateRoot.TestId);
+            if (testRoot == null)
+            {
+                testRoot = new TestAggregateRoot();
+                await Session.StoreAsync(testRoot);
+            }
 
+            await testRoot.DomainMehtod(Message);
+
+            var testCommandResponse = new TestCommandResponse {Message = "Great succes" };
             return testCommandResponse;
         }
     }

@@ -44,7 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\SomeDomainEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestAggregateRoot.cs" />
+    <Compile Include="TestValueObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
