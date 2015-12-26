@@ -1,33 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
+using Castle.Windsor;
+using Castle.Windsor.Installer;
 
 namespace Raven.DDD.SampleWebservice
 {
     public class Global : System.Web.HttpApplication
     {
 
+        public static IWindsorContainer Container { get; protected set; }
+
         protected void Application_Start(object sender, EventArgs e)
         {
-
-        }
-
-        protected void Session_Start(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Application_BeginRequest(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Application_AuthenticateRequest(object sender, EventArgs e)
-        {
-
+            Container = new WindsorContainer();
+            Container.Install(FromAssembly.This());
         }
 
         protected void Application_Error(object sender, EventArgs e)
@@ -35,14 +20,10 @@ namespace Raven.DDD.SampleWebservice
 
         }
 
-        protected void Session_End(object sender, EventArgs e)
-        {
-
-        }
 
         protected void Application_End(object sender, EventArgs e)
         {
-
+            Container.Dispose();
         }
     }
 }
