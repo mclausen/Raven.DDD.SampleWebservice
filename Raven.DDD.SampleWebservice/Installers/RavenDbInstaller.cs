@@ -13,11 +13,14 @@ namespace Raven.DDD.SampleWebservice.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IDocumentStore>().UsingFactoryMethod(CreateDocumentStore)
+            container.Register(Component.For<IDocumentStore>()
+                .UsingFactoryMethod(CreateDocumentStore)
                 .LifestyleSingleton()
                 .OnDestroy(x => x.Dispose()));
 
-            container.Register(Component.For<IAsyncDocumentSession>().UsingFactoryMethod(CreateSession).LifestylePerWebRequest());
+            container.Register(Component.For<IAsyncDocumentSession>()
+                .UsingFactoryMethod(CreateSession)
+                .LifestylePerWebRequest());
         }
 
         private IDocumentStore CreateDocumentStore()

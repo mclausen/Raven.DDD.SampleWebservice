@@ -13,10 +13,10 @@ namespace Raven.DDD.SampleWebservice.Infrastructure
         public RavenDbUnitOfWork(OwinMiddleware next, IWindsorContainer container) : base(next)
         {
             _container = container;
-            
+
         }
 
-        public async override Task Invoke(IOwinContext context)
+        public override async Task Invoke(IOwinContext context)
         {
             context.Set("windsor-container", _container);
             var domainEventPublisher = new OwinDomainEventPublisher(context);
@@ -27,14 +27,15 @@ namespace Raven.DDD.SampleWebservice.Infrastructure
             await Next.Invoke(context);
 
             await DispatchDomainEvents(domainEventPublisher);
-            
+
             await session.SaveChangesAsync();
 
-            _container.Release(session);
             session.Dispose();
+            _container.Release(session);
+            
         }
 
-        private async Task DispatchDomainEvents(OwinDomainEventPublisher domainEventPublisher)
+    private async Task DispatchDomainEvents(OwinDomainEventPublisher domainEventPublisher)
         {
             foreach (var domainEvent in domainEventPublisher.CollectedEvents)
             {
