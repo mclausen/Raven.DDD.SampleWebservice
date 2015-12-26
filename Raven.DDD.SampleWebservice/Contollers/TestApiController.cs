@@ -11,7 +11,7 @@ namespace Raven.DDD.SampleWebservice.Contollers
     {
         [Route("test2")]
         [HttpGet]
-        public async Task<OkResult> TestA()
+        public async Task<OkNegotiatedContentResult<string>> TestA()
         {
             var response = await CommandFactory<TestCommand, TestCommandResponse>(cmd =>
             {
@@ -20,7 +20,7 @@ namespace Raven.DDD.SampleWebservice.Contollers
 
             
 
-            return Ok();
+            return Ok(response.Message);
         }
 
         public class Response

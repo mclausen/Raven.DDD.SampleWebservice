@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Castle.Windsor;
 using Microsoft.Owin;
 using Raven.Client;
@@ -29,9 +28,7 @@ namespace Raven.DDD.SampleWebservice.Infrastructure
 
             await DispatchDomainEvents(domainEventPublisher);
             
-
             await session.SaveChangesAsync();
-
 
             _container.Release(session);
             session.Dispose();

@@ -1,6 +1,6 @@
 ﻿using RavenDb.DDD.Core.Events;
 
-namespace Raven.DDD.Core.Events
+namespace Raven.DDD.Core.AggregateRootContext.Events
 {
     public class SomeDomainEvent : IDomainEvent
     {

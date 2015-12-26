@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Raven.Client;
-using Raven.DDD.Core;
+using Raven.DDD.Core.AggregateRootContext;
 using Raven.DDD.SampleWebservice.Infrastructure;
 
 namespace Raven.DDD.SampleWebservice.Commands

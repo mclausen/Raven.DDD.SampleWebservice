@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Raven.DDD.Core.Events;
+using Raven.DDD.Core.AggregateRootContext.Events;
 using RavenDb.DDD.Core;
 using RavenDb.DDD.Core.Events;
 
-namespace Raven.DDD.Core
+namespace Raven.DDD.Core.AggregateRootContext
 {
     public class TestAggregateRoot : AggregateRoot
     {

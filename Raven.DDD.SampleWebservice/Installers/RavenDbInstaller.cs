@@ -4,6 +4,8 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Indexes;
+using Raven.DDD.Infrastructure.Indexes;
 
 namespace Raven.DDD.SampleWebservice.Installers
 {
@@ -25,8 +27,9 @@ namespace Raven.DDD.SampleWebservice.Installers
                 Url = "http://localhost:8080",
                 DefaultDatabase = "RavenDDDStore"
             };
-
+            
             documentStore.Initialize(ensureDatabaseExists: true);
+            IndexCreation.CreateIndexes(typeof (TestAggregateRootIndex).Assembly, documentStore);
 
             return documentStore;
         }

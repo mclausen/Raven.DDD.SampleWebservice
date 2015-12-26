@@ -1,4 +1,4 @@
-﻿namespace Raven.DDD.Core
+﻿namespace Raven.DDD.Core.AggregateRootContext
 {
     public class TestValueObject
     {
