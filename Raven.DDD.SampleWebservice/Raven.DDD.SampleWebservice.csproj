@@ -125,22 +125,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\TestCommand.cs" />
     <Compile Include="Contollers\TestApiController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Infrastructure\Command.cs" />
     <Compile Include="Infrastructure\OwinDomainEventPublisher.cs" />
     <Compile Include="Infrastructure\RavenApiController.cs" />
     <Compile Include="Infrastructure\RavenDbUnitOfWork.cs" />
-    <Compile Include="Installers\DomainInstallerInstaller.cs" />
+    <Compile Include="Installers\DomainInstaller.cs" />
     <Compile Include="Installers\RavenDbInstaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startables\DocumentChangedListener.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
